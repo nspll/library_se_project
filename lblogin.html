@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <body>
+	<div class="login"><h1>
+	<p   style="font-family:courier;color:white;">สำหรับบรรณารักษ์</p></h1>
+		<div class="login-screen">
+		
+			<div class="app-title">
+				<h1>Login</h1>
+			</div>
+
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="เลขบัตรประจำตัวประชาชน" id="login-name">
+				<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+
+				<div class="control-group">
+				<input type="password" class="login-field" value="" placeholder="password" id="login-pass">
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+				<a class="btn btn-primary btn-large btn-block" href="#" onclick = "login()">login</a>
+				<a class="login-link" href="test5.php">ย้อนกลับ</a>
+			</div>
+		</div>
+		<br>
+		<br>
+		<!---button class="btn btn-primary btn-large btn-block"  href="test5.php" >ย้อนกลับ< /button--->
+	</div>
+	
+	<script>
+	function login()
+	{
+	   var resultlg = 0;
+	   var user =  document.getElementById("login-name").value;
+	   var password = document.getElementById("login-pass").value;
+	   if(user=="" || password=="")
+	        {
+	           alert("กรุณากรอกข้อมูลให้ครบ");
+	    return;
+	         }
+	   if (window.XMLHttpRequest) { 
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+			
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) { 
+			resultlg = this.responseText.trim(); 
+			   
+			   if( resultlg == "200")
+					{
+						alert("เข้าระบบเรียบร้อย");
+						window.location.href = "hitest5.php";
+						
+					}
+				else {
+						alert("ข้อมูลรหัสผ่านหรือหมายเลขบัตรประชาชนผิด");
+					 }
+            }
+			
+        };
+		  
+        xmlhttp.open("GET","checklblogin.php?user="+user+"&password="+password,true);
+        xmlhttp.send();
+		
+	}
+	
+	
+	</script>
+</body>
+  
+  
+</body>
+</html>
